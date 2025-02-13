@@ -35,7 +35,7 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="flex gap-4 mt-8">
+    <div className="flex flex-wrap gap-4 mt-8">
       <TimeBox value={timeLeft.days} label="DAYS" />
       <TimeBox value={timeLeft.hours} label="HOURS" />
       <TimeBox value={timeLeft.minutes} label="MINUTES" />

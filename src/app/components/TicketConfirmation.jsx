@@ -57,7 +57,7 @@ const TicketConfirmation = ({
             </div>
 
             <div className="mt-4 text-sm bg-teal-900 p-4 rounded-xl">
-              <div className="w-auto grid grid-cols-2 items-center border border-teal-700 justify-start">
+              <div className="w-auto grid grid-col-1 lg:grid-cols-2  items-center border border-teal-700 justify-start">
                 <p className="border-r border-b border-teal-700 rounded-4 px-4 py-2">
                   <span className="text-gray-500">Name:</span> <br />{" "}
                   {formData.name}
