@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #001517;
+  --foreground: #ffffff;
+  --primary: #38b6c2;
+  --border: #38b6c2;
+  --card-bg: rgba(0, 37, 40, 0.8);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+.hollow-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: transparent; /* No fill color */
+  -webkit-text-stroke: 1px var(--foreground); /* Outline thickness and color */
+  text-transform: lowercase; /* Optional: Makes text uppercase */
+  letter-spacing: 1px; /* Optional: Adjust spacing */
+}
+.stroke-icon {
+  fill: transparent;
+  stroke: var(--foreground); /* Cyan outline */
+  stroke-width: 10px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(56, 182, 194, 0.2);
+  border-radius: 16px;
+}
+
+.ticket-type {
+  background: rgba(56, 182, 194, 0.1);
+  border: 1px solid rgba(56, 182, 194, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ticket-type.selected {
+  border-color: var(--primary);
+  background: rgba(56, 182, 194, 0.2);
+}
+
+.upload-area {
+  border: 2px dashed var(--primary);
+  border-radius: 8px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.custom-input {
+  background: transparent;
+  border: 1px solid rgba(56, 182, 194, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--foreground);
+  width: 100%;
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.primary-button {
+  background: var(--primary);
+  color: var(--background);
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button:hover {
+  opacity: 0.9;
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondary-button:hover {
+  background: rgba(56, 182, 194, 0.1);
+}
+
+.generated-ticket {
+  background: linear-gradient(
+    180deg,
+    rgba(56, 182, 194, 0.1) 0%,
+    rgba(0, 37, 40, 0.8) 100%
+  );
+  border: 1px solid rgba(56, 182, 194, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  margin: 0 auto;
+}
