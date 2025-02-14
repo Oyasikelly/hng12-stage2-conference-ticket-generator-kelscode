@@ -141,7 +141,7 @@ const TicketConfirmation = ({
 
       <div className="flex space-x-4 mt-6">
         <button
-          onClick={() => onStep(1)}
+          onClick={() =>  onStep(1)}
           className="px-2 py-0 lg:px-6 lg:py-2  rounded-xl border border-teal-700 rounded-md text-gray-400 font-semibold hover:text-white hover:border-cyan-600 hover:bg-cyan-600 hover:text-gray-900"
         >
           Book Another Ticket

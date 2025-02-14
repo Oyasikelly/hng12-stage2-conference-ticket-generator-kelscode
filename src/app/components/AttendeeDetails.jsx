@@ -8,12 +8,81 @@ export default function AttendeeDetails({
   handleImageUpload,
   onStep,
   isLoading,
-  validateForm,
 }) {
+  const [errormssg, setErrorMssg] = useState("");
+  const [errorName, setErrorName] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorimage, setErrorImage] = useState(false);
+  const [errorRequest, setErrorRequest] = useState(false);
+
+  function removeBorderLine() {
+    setTimeout(() => {
+      setErrorName(false);
+      setErrorEmail(false);
+      setErrorImage(false);
+      setErrorRequest(false);
+      setErrorMssg("");
+    }, 1000);
+  }
+  const validateForm = (e) => {
+    e.preventDefault();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // if (
+    //   formData.name == "" ||
+    //   emailRegex.test(formData.email) === false ||
+    //   formData.avatarUrl === ""
+    // ) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+    if (formData.avatarUrl === "") {
+      setErrorMssg("image should not be empty");
+      setErrorImage(true);
+      removeBorderLine();
+      return false;
+    }
+    if (formData.name == "") {
+      setErrorMssg("Name should not be empty");
+      setErrorName(true);
+      removeBorderLine();
+      return false;
+    }
+    if (emailRegex.test(formData.email) === false) {
+      setErrorMssg("Invalid email!, enter a valid email");
+      setErrorEmail(true);
+      removeBorderLine();
+      return false;
+    }
+    if (formData.email === "") {
+      setErrorMssg("email should not be empty");
+      setErrorEmail(true);
+      removeBorderLine();
+
+      return false;
+    }
+    if (formData.specialRequest === "") {
+      setErrorMssg("Request should not be empty");
+      setErrorRequest(true);
+      removeBorderLine();
+      return false;
+    }
+
+    return true;
+  };
+
   return (
-    <form className="w-full lg:w-4/6  border border-teal-700 p-4 rounded-xl shadow-lg bg-[#11262b]">
+    <form
+      onSubmit={(e) => validateForm(e) && onStep(3)}
+      className="w-full lg:w-4/6  border border-teal-700 p-4 rounded-xl shadow-lg bg-[#11262b]"
+    >
       <div className="mb-4">
-        <div className="flex flex-col border-2  mb-6 border-teal-900 p-4 rounded-xl ">
+        <div
+          className={`border-2  ${
+            errorimage === true ? "border-red-500" : ""
+          } flex flex-col  mb-6 border-teal-900 p-4 rounded-xl `}
+        >
           <div className="relative">
             <label className=" block text-sm font-medium mb-4  ">
               Upload Profile Photo
@@ -67,14 +136,20 @@ export default function AttendeeDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, name: e.target.value }))
           }
-          className="w-full p-2 rounded-xl bg-transparent border border-teal-700 text-white focus:outline-none focus:ring-2 focus:ring-teal-600"
+          className={`w-full p-2 rounded-xl bg-transparent border ${
+            errorName == true ? "border-red-500" : ""
+          } border-teal-700 text-white focus:outline-none focus:ring-2 focus:ring-teal-600`}
         />
       </div>
       <div className="mb-4  ">
         <label className="block text-sm font-medium mb-1">
-          Enter your email *
+          Enter your email*
         </label>
-        <div className="hover:ring-2 hover:ring-teal-600 flex items-center bg-transparent border border-teal-700 p-2 rounded-xl">
+        <div
+          className={`hover:ring-2 hover:ring-teal-600 flex items-center bg-transparent border ${
+            errorEmail == true ? "border-red-500" : ""
+          } border-teal-700 p-2 rounded-xl`}
+        >
           <span className="text-teal-400 mr-2">
             <MdOutlineEmail className="text-white" />
           </span>
@@ -100,9 +175,13 @@ export default function AttendeeDetails({
               specialRequest: e.target.value,
             }))
           }
-          className="w-full p-2 resize-none scrollbar-hide overflow-auto rounded-xl bg-transparent border border-teal-700 text-white  focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className={`w-full p-2 resize-none scrollbar-hide overflow-auto rounded-xl bg-transparent border ${
+            errorRequest == true ? "border-red-500" : ""
+          } border-teal-700 text-white  focus:outline-none focus:ring-2 focus:ring-teal-500`}
         ></textarea>
+        <p className="text-xs lg:text-md text-red-500">{errormssg}</p>
       </div>
+
       <div className="flex justify-between gap-4 items-center">
         <button
           onClick={() => onStep(1)}
@@ -112,7 +191,6 @@ export default function AttendeeDetails({
           Back
         </button>
         <button
-          onClick={() => validateForm() && onStep(3)}
           type="submit"
           className="w-full px-4 py-2 text-[10px] lg:text-md rounded-xl bg-cyan-500 text-white hover:bg-cyan-600 transition"
         >

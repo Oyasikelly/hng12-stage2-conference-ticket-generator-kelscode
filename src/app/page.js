@@ -3,8 +3,6 @@
 import TicketConfirmation from "./components/TicketConfirmation";
 
 import { useState, useEffect } from "react";
-// import { Upload, ArrowRight, ArrowLeft } from '
-import { FaUpload, FaArrowRight, FaArrowLeft, FaBarcode } from "react-icons/fa";
 import TicketSelection from "./components/TicketSelection";
 import AttendeeDetails from "./components/AttendeeDetails";
 
@@ -41,24 +39,10 @@ export default function Home() {
     localStorage.setItem("ticketFormData", JSON.stringify(formData));
   }, [formData]);
 
-  const validateForm = () => {
-    console.log(formData);
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (
-      !formData.name == "" &&
-      !emailRegex.test(formData.email) &&
-      !formData.avatarUrl == ""
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  };
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    validateForm();
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "hng-user-upload");
@@ -102,7 +86,6 @@ export default function Home() {
             setFormData={setFormData}
             formData={formData}
             isLoading={isLoading}
-            validateForm={validateForm}
           />
         );
       case 3:

@@ -10,7 +10,7 @@ const speakers = [
     name: "Dr. Emily Carter",
     topic: "AI & Machine Learning",
     image:
-      "https://images.unsplash.com/photo-1502767089025-6572583495b9?auto=format&fit=crop&q=80&w=1000",
+      "https://img.freepik.com/free-photo/beautiful-stylish-casual-girl-confidently-looking-camera-outdoor_574295-3080.jpg",
   },
   {
     id: 2,
